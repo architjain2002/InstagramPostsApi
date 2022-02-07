@@ -3,6 +3,7 @@ const { response } = require("express");
 const mongoose = require("mongoose");
 var PostModel = require("../models/postModel.js");
 
+// to get all the posts
 exports.findPostDetails = function (req, res) {
   PostModel.find({}, (err, data) => {
     if (err) {
@@ -13,6 +14,8 @@ exports.findPostDetails = function (req, res) {
     }
   });
 };
+
+// to insert a post into the array.
 exports.insertPostDetails = function (req, res) {
   const postObj = new PostModel(req.body);
   console.log(postObj);
@@ -21,12 +24,23 @@ exports.insertPostDetails = function (req, res) {
       res.sendStatus(400);
     } else {
       if (data == null) {
-        postObj.save();
+        var firstPost = {
+          InstId: req.body.InstId,
+          ProfilePhotoUrl: req.body.ProfilePhotoUrl,
+          InstPosts: [
+            {
+              PostDescription: req.body.PostDescription,
+              PostPhotoUrl: req.body.PostPhotoUrl,
+              Location: req.body.Location,
+              PostDate: req.body.PostDate,
+            },
+          ],
+        };
+        const firstPostObj = new PostModel(firstPost);
+        firstPostObj.save();
         res.send("new data inserted");
       } else {
-        // data = JSON.parse(data);
-        // data.PostCount = PostCount + 1;
-        PostModel.updateMany(
+        PostModel.updateOne(
           { InstId: postObj.InstId },
           {
             $push: {
@@ -36,6 +50,9 @@ exports.insertPostDetails = function (req, res) {
                 Location: req.body.Location,
                 PostDate: req.body.PostDate,
               },
+            },
+            $set: {
+              PostCount: data.PostCount + 1,
             },
           }
         )
