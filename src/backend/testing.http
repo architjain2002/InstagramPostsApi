@@ -27,3 +27,19 @@ content-type: application/json
 
 GET http://127.0.0.1:3001/instPosts/findPostDetails HTTP/1.1
 content-type: application/json
+
+
+###
+
+POST http://127.0.0.1:3001/instPosts/insertPostDetails HTTP/1.1
+content-type: application/json
+
+
+{
+  "InstId": "MrX",
+  "ProfilePhotoUrl": "profile Photo url here",
+  "PostDescription": "coding...",
+  "PostPhotoUrl":"post Photo url here",
+  "Location": "home",
+  "PostDate": "2022-2-07",
+}
