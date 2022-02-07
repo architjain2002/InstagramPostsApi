@@ -41,5 +41,5 @@ content-type: application/json
   "PostDescription": "coding...",
   "PostPhotoUrl":"post Photo url here",
   "Location": "home",
-  "PostDate": "2022-2-07",
+  "PostDate": "2022-2-07"
 }

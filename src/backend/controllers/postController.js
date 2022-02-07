@@ -34,16 +34,7 @@ exports.insertPostDetails = function (req, res) {
                 PostDescription: req.body.PostDescription,
                 PostPhotoUrl: req.body.PostPhotoUrl,
                 Location: req.body.Location,
-                LikesCount: req.body.LikesCount,
-                CommentCount: req.body.CommentCount,
                 PostDate: req.body.PostDate,
-                Comments: [
-                  {
-                    InstId: req.body.InstId,
-                    CommentText: req.body.CommentText,
-                    CommentToId: req.body.CommentToId,
-                  },
-                ],
               },
             },
           }
