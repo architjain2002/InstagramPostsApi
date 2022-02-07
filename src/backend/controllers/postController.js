@@ -73,7 +73,7 @@ exports.insertCommentDetails = function (req, res) {
   PostModel.findOne(
     {
       InstId: req.body.InstId,
-      "instPosts.PostPhotoUrl": req.body.PostPhotoUrl,
+      // "InstPosts.PostPhotoUrl": req.body.PostPhotoUrl,
     },
     (err, data) => {
       if (err) {
@@ -86,16 +86,20 @@ exports.insertCommentDetails = function (req, res) {
           PostModel.updateOne(
             {
               InstId: req.body.InstId,
-              "instPosts.PostPhotoUrl": req.body.PostPhotoUrl,
+              // "InstPosts.PostPhotoUrl": req.body.PostPhotoUrl,
             },
             {
               $push: {
-                "InstPosts.0.Comments": {
+                "InstPosts.$[elem].Comments": {
                   InstId: req.body.CommentInstId,
                   CommentText: req.body.CommentText,
                   CommentToId: req.body.CommentToId,
                 },
               },
+            },
+            {
+              arrayFilters: [{ "elem.PostPhotoUrl": req.body.PostPhotoUrl }],
+              // multi: true,
             }
           )
             .then((data) => {
