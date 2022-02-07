@@ -1,0 +1,27 @@
+POST http://192.168.0.104:3000/authData HTTP/1.1
+content-type: application/json
+
+
+{
+    "InstId": "MrX",
+    "ProfilePhotoUrl": "profile Photo url here",
+  "PostCount": 2,
+  "InstPosts": [
+    {
+      "PostDescription": "coding...",
+      "PostPhotoUrl":"post Photo url here",
+      "Location": "home",
+      "LikesCount": 10,
+      "CommentCount": 1,
+      "PostDate": "2022-2-07",
+      "Comments": [
+        {
+          "InstId": "Mr Y",
+          "CommentText": "As usual coding at home..",
+          "CommentToId": "MrX",
+        },
+      ],
+    },
+  ],
+};
+    
