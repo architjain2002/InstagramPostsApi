@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const http = require("http");
 const server = http.createServer(app);
 const hostname = "127.0.0.1";
-const port = process.env.PORT || 3000;
-
+const port = process.env.PORT || 3001;
+app.use(express.json());
 var postRouter = require("./routes/postRoute.js");
 app.use("/instPosts", postRouter);
 mongoose

@@ -1,10 +1,10 @@
-POST http://192.168.0.104:3000/authData HTTP/1.1
+POST http://127.0.0.1:3001/instPosts/insertPostDetails HTTP/1.1
 content-type: application/json
 
 
 {
-    "InstId": "MrX",
-    "ProfilePhotoUrl": "profile Photo url here",
+  "InstId": "MrX",
+  "ProfilePhotoUrl": "profile Photo url here",
   "PostCount": 2,
   "InstPosts": [
     {
@@ -18,10 +18,8 @@ content-type: application/json
         {
           "InstId": "Mr Y",
           "CommentText": "As usual coding at home..",
-          "CommentToId": "MrX",
-        },
-      ],
-    },
-  ],
-};
+          "CommentToId": "MrX"
+        }]
+    }]
+}
     

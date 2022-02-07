@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-var PostModel = require("../models/postModel");
+var PostModel = require("../models/postModel.js");
 
 exports.findPostDetails = function (req, res) {
   PostModel.find({}, (err, data) => {
@@ -13,9 +13,12 @@ exports.findPostDetails = function (req, res) {
 };
 exports.insertPostDetails = function (req, res) {
   const postObj = new PostModel(req.body);
-  if (err) {
-    res.status(400);
-  } else {
-    postObj.save();
-  }
+  postObj.save((err, data) => {
+    if (err) {
+      res.status(400);
+    } else {
+      console.log(data);
+      res.status(200);
+    }
+  });
 };
