@@ -6,7 +6,7 @@ exports.findPostDetails = function (req, res) {
     if (err) {
       res.sendStatus(400);
     } else {
-      console.log(data);
+      console.log(JSON.parse(data));
       res.send("all the instagram post data");
     }
   });
