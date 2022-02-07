@@ -43,3 +43,19 @@ content-type: application/json
   "Location": "home",
   "PostDate": "2022-2-07"
 }
+
+
+
+###
+
+POST http://127.0.0.1:3001/instPosts/insertCommentDetails HTTP/1.1
+content-type: application/json
+
+
+{
+  "InstId": "MrX",
+  "PostPhotoUrl":"post Photo url here",
+  "CommentInstId": "Mr Y",
+  "CommentText": "As usual coding at home..",
+  "CommentToId": "MrX"
+}

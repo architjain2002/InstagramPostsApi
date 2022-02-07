@@ -68,3 +68,46 @@ exports.insertPostDetails = function (req, res) {
     }
   });
 };
+
+exports.insertCommentDetails = function (req, res) {
+  PostModel.findOne(
+    {
+      InstId: req.body.InstId,
+      "instPosts.PostPhotoUrl": req.body.PostPhotoUrl,
+    },
+    (err, data) => {
+      if (err) {
+        res.sendStatus(400);
+      } else {
+        console.log(data);
+        if (data == null) {
+          res.send("The post No longer exists or there isnt any post");
+        } else {
+          PostModel.updateOne(
+            {
+              InstId: req.body.InstId,
+              "instPosts.PostPhotoUrl": req.body.PostPhotoUrl,
+            },
+            {
+              $push: {
+                "InstPosts.0.Comments": {
+                  InstId: req.body.CommentInstId,
+                  CommentText: req.body.CommentText,
+                  CommentToId: req.body.CommentToId,
+                },
+              },
+            }
+          )
+            .then((data) => {
+              console.log(data);
+              res.sendStatus(200);
+            })
+            .catch((err) => {
+              console.log(err);
+              res.sendStatus(400);
+            });
+        }
+      }
+    }
+  );
+};
