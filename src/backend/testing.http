@@ -39,7 +39,7 @@ content-type: application/json
   "InstId": "MrX",
   "ProfilePhotoUrl": "profile Photo url herefsgsdfgf",
   "PostDescription": "coding...",
-  "PostPhotoUrl":"post Photo url here2",
+  "PostPhotoUrl":"post Photo url here",
   "Location": "home",
   "PostDate": "2022-2-07"
 }
@@ -63,6 +63,29 @@ content-type: application/json
 ###
 
 POST http://127.0.0.1:3001/instPosts/addNewLike HTTP/1.1
+content-type: application/json
+
+
+{
+  "InstId": "MrX",
+  "PostPhotoUrl":"post Photo url here"
+}
+
+###
+
+POST http://127.0.0.1:3001/instPosts/removeNewLike HTTP/1.1
+content-type: application/json
+
+
+{
+  "InstId": "MrX",
+  "PostPhotoUrl":"post Photo url here"
+}
+
+###
+
+
+POST http://127.0.0.1:3001/instPosts/deletePostDetails HTTP/1.1
 content-type: application/json
 
 

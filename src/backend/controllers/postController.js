@@ -51,8 +51,8 @@ exports.insertPostDetails = function (req, res) {
                 PostDate: req.body.PostDate,
               },
             },
-            $set: {
-              PostCount: data.PostCount + 1,
+            $inc: {
+              PostCount: 1,
             },
           }
         )
@@ -153,6 +153,36 @@ exports.removeNewLike = function (req, res) {
     {
       $inc: {
         "InstPosts.$[elem].LikesCount": -1,
+      },
+    },
+    {
+      arrayFilters: [{ "elem.PostPhotoUrl": req.body.PostPhotoUrl }],
+    }
+  )
+    .then((data) => {
+      console.log(data);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+};
+
+exports.deletePostDetails = function (req, res) {
+  PostModel.updateOne(
+    { InstId: req.body.InstId },
+    {
+      $pull: {
+        InstPosts: {
+          // PostDescription: req.body.PostDescription,
+          PostPhotoUrl: req.body.PostPhotoUrl,
+          // Location: req.body.Location,
+          // PostDate: req.body.PostDate,
+        },
+      },
+      $inc: {
+        PostCount: -1,
       },
     },
     {
