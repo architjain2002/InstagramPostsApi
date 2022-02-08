@@ -64,3 +64,7 @@ http://127.0.0.1:3001/instPosts/removeNewLike
   "PostPhotoUrl":"post Photo url(http://example.com)"
   }
   ```
+# Contributing
+Pull requests are welcome. 
+
+For major changes, please open an issue first to discuss what you would like to change.
