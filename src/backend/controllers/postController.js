@@ -69,6 +69,7 @@ exports.insertPostDetails = function (req, res) {
   });
 };
 
+// to insert a new comment into the array and increment the post count
 exports.insertCommentDetails = function (req, res) {
   PostModel.findOne(
     {
@@ -96,10 +97,12 @@ exports.insertCommentDetails = function (req, res) {
                   CommentToId: req.body.CommentToId,
                 },
               },
+              $inc: {
+                "InstPosts.$[elem].CommentCount": 1,
+              },
             },
             {
               arrayFilters: [{ "elem.PostPhotoUrl": req.body.PostPhotoUrl }],
-              // multi: true,
             }
           )
             .then((data) => {
@@ -114,4 +117,54 @@ exports.insertCommentDetails = function (req, res) {
       }
     }
   );
+};
+
+// to increment the like by 1
+exports.addNewLike = function (req, res) {
+  PostModel.updateOne(
+    {
+      InstId: req.body.InstId,
+    },
+    {
+      $inc: {
+        "InstPosts.$[elem].LikesCount": 1,
+      },
+    },
+    {
+      arrayFilters: [{ "elem.PostPhotoUrl": req.body.PostPhotoUrl }],
+    }
+  )
+    .then((data) => {
+      console.log(data);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
+};
+
+// to decrement the like by 1
+exports.removeNewLike = function (req, res) {
+  PostModel.updateOne(
+    {
+      InstId: req.body.InstId,
+    },
+    {
+      $inc: {
+        "InstPosts.$[elem].LikesCount": -1,
+      },
+    },
+    {
+      arrayFilters: [{ "elem.PostPhotoUrl": req.body.PostPhotoUrl }],
+    }
+  )
+    .then((data) => {
+      console.log(data);
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    });
 };

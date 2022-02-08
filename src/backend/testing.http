@@ -39,7 +39,7 @@ content-type: application/json
   "InstId": "MrX",
   "ProfilePhotoUrl": "profile Photo url herefsgsdfgf",
   "PostDescription": "coding...",
-  "PostPhotoUrl":"post Photo url here",
+  "PostPhotoUrl":"post Photo url here2",
   "Location": "home",
   "PostDate": "2022-2-07"
 }
@@ -58,4 +58,15 @@ content-type: application/json
   "CommentInstId": "Mr Y",
   "CommentText": "As usual coding at home..",
   "CommentToId": "MrX"
+}
+
+###
+
+POST http://127.0.0.1:3001/instPosts/addNewLike HTTP/1.1
+content-type: application/json
+
+
+{
+  "InstId": "MrX",
+  "PostPhotoUrl":"post Photo url here2"
 }
