@@ -37,7 +37,7 @@ content-type: application/json
 
 {
   "InstId": "MrX",
-  "ProfilePhotoUrl": "profile Photo url herefsgsdfgf",
+  "ProfilePhotoUrl": "profile Photo url",
   "PostDescription": "coding...",
   "PostPhotoUrl":"post Photo url here",
   "Location": "home",

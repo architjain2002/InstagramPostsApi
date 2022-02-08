@@ -175,10 +175,7 @@ exports.deletePostDetails = function (req, res) {
     {
       $pull: {
         InstPosts: {
-          // PostDescription: req.body.PostDescription,
           PostPhotoUrl: req.body.PostPhotoUrl,
-          // Location: req.body.Location,
-          // PostDate: req.body.PostDate,
         },
       },
       $inc: {
